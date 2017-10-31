@@ -17,8 +17,8 @@ package cmd
 import (
 	"fmt"
 	"os"
-
 	"github.com/spf13/cobra"
+	"agenda/entity"
 )
 
 // usersCmd represents the users command
@@ -35,6 +35,7 @@ import (
 // 		fmt.Println("users called")
 // 	},
 // }
+
 func printError(error string) {
 	fmt.Fprint(os.Stderr, error)
 	os.Exit(1)
@@ -62,7 +63,13 @@ var registerCmd = &cobra.Command{
 		phone, _ := com.Flags().GetString("phone")
 		checkEmpty("phone", phone)
 
-		//	cmd.Register(username, password, mail, phone)   // 还没实现
+		if err := entity.UserRegister(username, password, mail, phone); err != nil {
+			fmt.Println(err)
+			errLog.Println(err)
+		} else {
+			fmt.Println("Successfully registered the account " + username + " !")
+			logLog.Println("Successfully registered the account " + username + " !")
+		}
 	},
 }
 
@@ -77,7 +84,13 @@ var loginCmd = &cobra.Command{
 		password, _ := com.Flags().GetString("password")
 		checkEmpty("password", password)
 
-		//cmd.Login(username, password) //还没实现
+		if err := entity.UserLogin(username, password); err != nil {
+			fmt.Println(err)
+			errLog.Println(err)
+		} else {
+			fmt.Println(username + " had logged in successfully!")
+			logLog.Println(username + " had logged in successfully!")
+		}
 	},
 }
 
@@ -86,26 +99,44 @@ var logoutCmd = &cobra.Command{
 	Short: "Logout",
 	Long:  ``,
 	Run: func(com *cobra.Command, args []string) {
-		//cmd.Logout() //还没实现
+		if err := entity.UserLogout(); err != nil {
+			fmt.Println(err)
+			errLog.Println(err)
+		} else {
+			logLog.Println("You had logged out successfully!")
+			fmt.Println("You had logged out successfully!")
+		}
 	},
 }
 
-var listCmd = &cobra.Command{
-	Use:   "list",
+var listUserCmd = &cobra.Command{
+	Use:   "listUser",
 	Short: "",
 	Long:  ``,
 	Run: func(com *cobra.Command, args []string) {
-		//cmd.ShowUsers()   // 还没实现
+		if err := entity.ListAllUser(); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("Listing users operation completed successfully!")
+			fmt.Println("Listing users operation completed successfully!")
+		}
 	},
 }
 
-var deleteCmd = &cobra.Command{
-	Use:   "delete",
+var deleteUserCmd = &cobra.Command{
+	Use:   "deleteUser",
 	Short: "Delete your account.",
 	Long: `Once you have deleted your account, you have no way to get it back!!!
 And all of information about you will be erased! That's you are dead!!!`,
 	Run: func(com *cobra.Command, args []string) {
-		//cmd.DeleteUser()  //还没实现
+		if err := entity.UserLogOff(); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("Your account was deleted successfully!")
+			fmt.Println("Your account was deleted successfully!")
+		}
 	},
 }
 
@@ -121,8 +152,8 @@ func init() {
 	RootCmd.AddCommand(registerCmd)
 	RootCmd.AddCommand(loginCmd)
 	RootCmd.AddCommand(logoutCmd)
-	RootCmd.AddCommand(listCmd)
-	RootCmd.AddCommand(deleteCmd)
+	RootCmd.AddCommand(deleteUserCmd)
+	RootCmd.AddCommand(listUserCmd)
 
 	// Here you will define your flags and configuration settings.
 

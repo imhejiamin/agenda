@@ -1,0 +1,15 @@
+LOG: 2017/10/31 23:07:06 log.go:51: There is the log message
+LOG: 2017/10/31 23:07:45 log.go:51: There is the log message
+LOG: 2017/10/31 23:07:50 log.go:51: There is the log message
+LOG: 2017/10/31 23:07:50 user.go:71: Successfully registered the account aaa !
+LOG: 2017/10/31 23:08:09 log.go:51: There is the log message
+LOG: 2017/10/31 23:19:26 log.go:51: There is the log message
+LOG: 2017/10/31 23:19:49 log.go:51: There is the log message
+LOG: 2017/10/31 23:20:08 log.go:51: There is the log message
+LOG: 2017/10/31 23:20:22 log.go:51: There is the log message
+LOG: 2017/10/31 23:20:22 user.go:106: You had logged out successfully!
+LOG: 2017/10/31 23:21:36 log.go:51: There is the log message
+LOG: 2017/10/31 23:21:36 user.go:106: You had logged out successfully!
+LOG: 2017/10/31 23:21:38 log.go:51: There is the log message
+LOG: 2017/10/31 23:21:38 user.go:106: You had logged out successfully!
+LOG: 2017/10/31 23:21:40 log.go:51: There is the log message

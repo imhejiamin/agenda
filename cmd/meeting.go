@@ -1,4 +1,3 @@
-
 // Copyright © 2017 NAME HERE <EMAIL ADDRESS>
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,14 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-
 package cmd
 
 import (
+	"fmt"
+	"strings"
+
+	"agenda/entity"
+	"agenda/mylog"
+
 	"github.com/spf13/cobra"
 )
 
+var errLog = mylog.Error
+var logLog = mylog.Login
+
+// registerCmd represents the register command
 var createMeetingsCmd = &cobra.Command{
 	Use:   "createMeetings",
 	Short: "Create meetings.",
@@ -33,7 +40,7 @@ var createMeetingsCmd = &cobra.Command{
 
 		participatorStr, _ := comd.Flags().GetString("participators")
 		checkEmpty("participators", participatorStr)
-
+		participators := strings.Split(participatorStr, " ")
 
 		startTime, _ := comd.Flags().GetString("start")
 		checkEmpty("Start Time", startTime)
@@ -41,13 +48,20 @@ var createMeetingsCmd = &cobra.Command{
 		endTime, _ := comd.Flags().GetString("end")
 		checkEmpty("End Time", endTime)
 
+		if err := entity.MeetingCreate(title, participators, startTime, endTime); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("A meeting was successfully created!")
+			fmt.Println("A meeting was successfully created!")
+		}
 	},
 }
 
-var cpCmd = &cobra.Command{
-	Use:   "cp",
-	Short: "Change your own meetings' participators.",
-	Long: `You can append or remove some participators from your own meeting
+var addParticipatorCmd = &cobra.Command{
+	Use:   "addParticipator",
+	Short: "Add your own meetings' participators.",
+	Long: `You can append some participators from your own meeting
 	by specifying the title name.`,
 	Run: func(comd *cobra.Command, args []string) {
 		title, _ := comd.Flags().GetString("title")
@@ -56,6 +70,39 @@ var cpCmd = &cobra.Command{
 		participatorStr, _ := comd.Flags().GetString("participators")
 		checkEmpty("participators", participatorStr)
 
+		participators := strings.Split(participatorStr, ",")
+
+		if err := entity.AddMeetingParticipator(title, participators); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("Add meeting participator successfully!")
+			fmt.Println("Add meeting participator successfully!")
+		}
+	},
+}
+
+var rmParticipatorCmd = &cobra.Command{
+	Use:   "rmParticipator",
+	Short: "Remove your own meetings' participators.",
+	Long: `You can remove some participators from your own meeting
+	by specifying the title name.`,
+	Run: func(comd *cobra.Command, args []string) {
+		title, _ := comd.Flags().GetString("title")
+		checkEmpty("title", title)
+
+		participatorStr, _ := comd.Flags().GetString("participators")
+		checkEmpty("participators", participatorStr)
+
+		participators := strings.Split(participatorStr, ",")
+
+		if err := entity.RemoveParticipator(title, participators); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("Remove meeting participator successfully!")
+			fmt.Println("Remove meeting participator successfully!")
+		}
 	},
 }
 
@@ -71,18 +118,31 @@ var listMeetingsCmd = &cobra.Command{
 		endTime, _ := comd.Flags().GetString("end")
 		checkEmpty("End Time", endTime)
 
-
+		if err := entity.ListMeeting(startTime, endTime); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("Listing meeting operation completed successfully!")
+			fmt.Println("Listing meeting operation completed successfully!")
+		}
 	},
 }
 
-var cancelCmd = &cobra.Command{
-	Use:   "cancel",
+var delAMeetingCmd = &cobra.Command{
+	Use:   "deleteAMeeting",
 	Short: "Cancel your own meeting by specifying title name.",
 	Long:  `Using this command, you are able to cancel the meetings, which are created by you.`,
 	Run: func(comd *cobra.Command, args []string) {
 		title, _ := comd.Flags().GetString("title")
 		checkEmpty("Title", title)
 
+		if err := entity.DeleteAMeeting(title); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			fmt.Println("The meeting was successfully deleted!")
+			logLog.Println("The meeting was successfully deleted!")
+		}
 	},
 }
 
@@ -94,46 +154,66 @@ var quitCmd = &cobra.Command{
 		title, _ := comd.Flags().GetString("title")
 		checkEmpty("Title", title)
 
+		if err := entity.QuitMeeting(title); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("You've successfully quit the meeting " + title + "!")
+			fmt.Println("You've successfully quit the meeting " + title + "!")
+		}
 	},
 }
 
+/*delete all meetings which are sponsored by this login user*/
 var clearCmd = &cobra.Command{
 	Use:   "clear",
 	Short: "Clear all meetings you attended or created.",
 	Long:  `Using this command, you can clear all of the meetings you attended or created.`,
 	Run: func(comd *cobra.Command, args []string) {
 
+		if err := entity.DeleteAllMeeting(); err != nil {
+			errLog.Println(err)
+			fmt.Println(err)
+		} else {
+			logLog.Println("You've successfully cleared all the meetings you sponsored!")
+			fmt.Println("You've successfully cleared all the meetings you sponsored!")
+		}
 	},
 }
 
 func init() {
+	RootCmd.AddCommand(createMeetingsCmd)
 	createMeetingsCmd.Flags().StringP("title", "t", "", "Input title name.")
 	createMeetingsCmd.Flags().StringP("participators", "p", "", "Input participator name.")
 	createMeetingsCmd.Flags().StringP("start", "s", "", "Input start time as the format of (yyyy-mm-dd).")
 	createMeetingsCmd.Flags().StringP("end", "e", "", "Input end time as the format of (yyyy-mm-dd).")
 
-	cpCmd.Flags().BoolP("delete", "y", false, "If true, delete participators, otherwise append participators.")
-	cpCmd.Flags().StringP("title", "t", "", "Input the title name.")
-	cpCmd.Flags().StringP("participators", "p", "", "Input the participators.")
+	RootCmd.AddCommand(addParticipatorCmd)
+	addParticipatorCmd.Flags().StringP("title", "t", "", "Input the title name.")
+	addParticipatorCmd.Flags().StringP("participators", "p", "", "Input the participators.")
 
+	RootCmd.AddCommand(rmParticipatorCmd)
+	rmParticipatorCmd.Flags().StringP("title", "t", "", "Input the title name.")
+	rmParticipatorCmd.Flags().StringP("participators", "p", "", "Input the participators.")
+
+	RootCmd.AddCommand(listMeetingsCmd)
 	listMeetingsCmd.Flags().StringP("start", "s", "", "Input the start time.(yyyy-mm-dd)")
 	listMeetingsCmd.Flags().StringP("end", "e", "", "Input the end time.(yyyy-mm-dd)")
 
-	cancelCmd.Flags().StringP("title", "t", "", "Input the title.")
+	RootCmd.AddCommand(delAMeetingCmd)
+	delAMeetingCmd.Flags().StringP("title", "t", "", "Input the title.")
 
+	RootCmd.AddCommand(quitCmd)
 	quitCmd.Flags().StringP("title", "t", "", "Input the title.")
 
-	RootCmd.AddCommand(createMeetingsCmd)
-	RootCmd.AddCommand(cpCmd)
-	RootCmd.AddCommand(listMeetingsCmd)
-	RootCmd.AddCommand(cancelCmd)
-	RootCmd.AddCommand(quitCmd)
 	RootCmd.AddCommand(clearCmd)
 
 	// Here you will define your flags and configuration settings.
+
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
 	// registerCmd.PersistentFlags().String("foo", "", "A help for foo")
+
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// registerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")

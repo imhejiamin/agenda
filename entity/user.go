@@ -1,6 +1,8 @@
+
+//user
+
 package entity
 
-// User :
 type User struct {
 	Name, Password, Email, Phone string
 }
@@ -12,7 +14,6 @@ func (m_user User) init(tName, tPassword, tEmail, tPhone string) {
 	m_user.Phone = tPhone
 }
 
-// CopyUser = copy User
 func (m_user User) CopyUser(tuser User) {
 	m_user.Name = tuser.Name
 	m_user.Password = tuser.Password

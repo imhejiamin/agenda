@@ -1,0 +1,18 @@
+ERROR: 2017/10/31 23:07:06 log.go:50: Something has failed
+ERROR: 2017/10/31 23:07:45 log.go:50: Something has failed
+ERROR: 2017/10/31 23:07:45 service.go:71: email format error.
+ERROR: 2017/10/31 23:07:45 user.go:68: Some errors have taken place
+ERROR: 2017/10/31 23:07:50 log.go:50: Something has failed
+ERROR: 2017/10/31 23:08:09 log.go:50: Something has failed
+ERROR: 2017/10/31 23:08:09 user.go:89: Error. You have login.Your username is:aaa
+ERROR: 2017/10/31 23:19:26 log.go:50: Something has failed
+ERROR: 2017/10/31 23:19:49 log.go:50: Something has failed
+ERROR: 2017/10/31 23:19:49 user.go:89: Error. You have login.Your username is:aaa
+ERROR: 2017/10/31 23:20:08 log.go:50: Something has failed
+ERROR: 2017/10/31 23:20:08 user.go:68: Error, can't do this operation. You hava login
+ERROR: 2017/10/31 23:20:22 log.go:50: Something has failed
+ERROR: 2017/10/31 23:21:36 log.go:50: Something has failed
+ERROR: 2017/10/31 23:21:38 log.go:50: Something has failed
+ERROR: 2017/10/31 23:21:40 log.go:50: Something has failed
+ERROR: 2017/10/31 23:21:40 service.go:57: the username has been used.
+ERROR: 2017/10/31 23:21:40 user.go:68: Some errors have taken place.
