@@ -21,7 +21,7 @@ func UserLogin(username string, password string) error {
 	}
 	user := QueryUser(checkuser)
 	if len(user) == 0 {
-		return errors.New("Error. Your name or password wrong")
+		return errors.New("Error！ Your name or password wrong")
 	}
 
 	SetCurUser(&user[0])
@@ -34,12 +34,12 @@ func UserLogout() error {
 	return nil
 }
 
-
+//用户注册部分
 func UserRegister(name string, password string,
 	email string, phone string) error {
 	_, err := GetCurUser()
 	if err == nil {
-		return errors.New("Error, can't do this operation. You hava login")
+		return errors.New("Error！ You hava login")
 	}
 
 	err = nil

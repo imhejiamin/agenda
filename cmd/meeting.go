@@ -33,7 +33,7 @@ var createMeetingsCmd = &cobra.Command{
 	Short: "Create meetings.",
 	Long: `If you want to create a meeting, you should declare the title name,
 		which can't be the same as others' title name, some participators(at least one),
-		start time as the format of (yyyy-mm-dd), and end time as the format of (yyyy-mm-dd).`,
+		start time as the format of (yyyy-mm-dd/mm:ss), and end time as the format of (yyyy-mm-dd:mm/ss).`,
 	Run: func(comd *cobra.Command, args []string) {
 		title, _ := comd.Flags().GetString("title")
 		checkEmpty("title", title)
@@ -185,8 +185,8 @@ func init() {
 	RootCmd.AddCommand(createMeetingsCmd)
 	createMeetingsCmd.Flags().StringP("title", "t", "", "Input title name.")
 	createMeetingsCmd.Flags().StringP("participators", "p", "", "Input participator name.")
-	createMeetingsCmd.Flags().StringP("start", "s", "", "Input start time as the format of (yyyy-mm-dd).")
-	createMeetingsCmd.Flags().StringP("end", "e", "", "Input end time as the format of (yyyy-mm-dd).")
+	createMeetingsCmd.Flags().StringP("start", "s", "", "Input start time as the format of (yyyy-mm-dd/mm:ss).")
+	createMeetingsCmd.Flags().StringP("end", "e", "", "Input end time as the format of (yyyy-mm-dd/mm:ss).")
 
 	RootCmd.AddCommand(addParticipatorCmd)
 	addParticipatorCmd.Flags().StringP("title", "t", "", "Input the title name.")
@@ -197,8 +197,8 @@ func init() {
 	rmParticipatorCmd.Flags().StringP("participators", "p", "", "Input the participators.")
 
 	RootCmd.AddCommand(listMeetingsCmd)
-	listMeetingsCmd.Flags().StringP("start", "s", "", "Input the start time.(yyyy-mm-dd)")
-	listMeetingsCmd.Flags().StringP("end", "e", "", "Input the end time.(yyyy-mm-dd)")
+	listMeetingsCmd.Flags().StringP("start", "s", "", "Input the start time.(yyyy-mm-dd/mm:ss)")
+	listMeetingsCmd.Flags().StringP("end", "e", "", "Input the end time.(yyyy-mm-dd/mm:ss)")
 
 	RootCmd.AddCommand(delAMeetingCmd)
 	delAMeetingCmd.Flags().StringP("title", "t", "", "Input the title.")

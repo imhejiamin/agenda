@@ -16,3 +16,60 @@ ERROR: 2017/10/31 23:21:38 log.go:50: Something has failed
 ERROR: 2017/10/31 23:21:40 log.go:50: Something has failed
 ERROR: 2017/10/31 23:21:40 service.go:57: the username has been used.
 ERROR: 2017/10/31 23:21:40 user.go:68: Some errors have taken place.
+ERROR: 2017/10/31 23:43:13 log.go:50: Something has failed
+ERROR: 2017/10/31 23:43:29 log.go:50: Something has failed
+ERROR: 2017/10/31 23:43:41 log.go:50: Something has failed
+ERROR: 2017/10/31 23:44:05 log.go:50: Something has failed
+ERROR: 2017/10/31 23:44:24 log.go:50: Something has failed
+ERROR: 2017/10/31 23:44:50 log.go:50: Something has failed
+ERROR: 2017/10/31 23:45:19 log.go:50: Something has failed
+ERROR: 2017/10/31 23:45:25 log.go:50: Something has failed
+ERROR: 2017/10/31 23:45:35 log.go:50: Something has failed
+ERROR: 2017/11/05 13:37:22 log.go:50: Something has failed
+ERROR: 2017/11/05 13:48:54 log.go:50: Something has failed
+ERROR: 2017/11/05 13:48:54 user.go:89: Error. You have login.Your username is:aaa
+ERROR: 2017/11/05 13:49:03 log.go:50: Something has failed
+ERROR: 2017/11/05 13:49:09 log.go:50: Something has failed
+ERROR: 2017/11/05 13:49:16 log.go:50: Something has failed
+ERROR: 2017/11/05 13:49:34 log.go:50: Something has failed
+ERROR: 2017/11/05 13:49:34 user.go:89: Error. Your name or password wrong
+ERROR: 2017/11/05 13:50:12 log.go:50: Something has failed
+ERROR: 2017/11/05 13:50:20 log.go:50: Something has failed
+ERROR: 2017/11/05 13:50:20 user.go:89: Error. Your name or password wrong
+ERROR: 2017/11/05 13:51:08 log.go:50: Something has failed
+ERROR: 2017/11/05 13:51:31 log.go:50: Something has failed
+ERROR: 2017/11/05 13:51:54 log.go:50: Something has failed
+ERROR: 2017/11/05 13:52:11 log.go:50: Something has failed
+ERROR: 2017/11/05 13:52:29 log.go:50: Something has failed
+ERROR: 2017/11/05 13:52:41 log.go:50: Something has failed
+ERROR: 2017/11/05 13:52:41 user.go:89: Error. Your name or password wrong
+ERROR: 2017/11/05 13:53:50 log.go:50: Something has failed
+ERROR: 2017/11/05 13:53:56 log.go:50: Something has failed
+ERROR: 2017/11/05 13:54:46 log.go:50: Something has failed
+ERROR: 2017/11/05 13:54:46 meeting.go:52: Current user does not exist
+ERROR: 2017/11/05 13:55:06 log.go:50: Something has failed
+ERROR: 2017/11/05 13:55:19 log.go:50: Something has failed
+ERROR: 2017/11/05 14:01:44 log.go:50: Something has failed
+ERROR: 2017/11/05 14:01:44 meeting.go:52: Error. The meetng has exist
+ERROR: 2017/11/05 14:02:02 log.go:50: Something has failed
+ERROR: 2017/11/05 14:04:51 log.go:50: Something has failed
+ERROR: 2017/11/05 14:04:51 meeting.go:52: Error. The meetng has exist
+ERROR: 2017/11/05 14:05:06 log.go:50: Something has failed
+ERROR: 2017/11/05 14:07:50 log.go:50: Something has failed
+ERROR: 2017/11/05 14:08:05 log.go:50: Something has failed
+ERROR: 2017/11/05 14:08:23 log.go:50: Something has failed
+ERROR: 2017/11/05 14:08:31 log.go:50: Something has failed
+ERROR: 2017/11/05 14:08:39 log.go:50: Something has failed
+ERROR: 2017/11/05 14:08:46 log.go:50: Something has failed
+ERROR: 2017/11/05 14:09:00 log.go:50: Something has failed
+ERROR: 2017/11/05 14:09:06 log.go:50: Something has failed
+ERROR: 2017/11/05 14:09:29 log.go:50: Something has failed
+ERROR: 2017/11/05 14:09:47 log.go:50: Something has failed
+ERROR: 2017/11/05 14:10:41 log.go:50: Something has failed
+ERROR: 2017/11/05 14:11:59 log.go:50: Something has failed
+ERROR: 2017/11/05 14:13:33 log.go:50: Something has failed
+ERROR: 2017/11/05 14:15:39 log.go:50: Something has failed
+ERROR: 2017/11/05 14:16:11 log.go:50: Something has failed
+ERROR: 2017/11/05 14:17:20 log.go:50: Something has failed
+ERROR: 2017/11/05 14:20:20 log.go:50: Something has failed
+ERROR: 2017/11/05 14:20:38 log.go:50: Something has failed
